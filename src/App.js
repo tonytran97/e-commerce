@@ -2,24 +2,45 @@ import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
+  Outlet,
 } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Products from "./pages/Products/Products";
+import AboutUs from "./pages/About-Us/About-Us";
+import Contact from './pages/Contact/Contact';
+import Navbar from "./components/Navbar/Navbar";
+
+const Layout = () => {
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
+  )
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <span>Home</span>
-  },
-  {
-    path: "/products",
-    element: <span>Products</span>
-  },
-  {
-    path: "/about-us",
-    element: <span>About Us</span>
-  },
-  {
-    path: "/contact",
-    element: <span>Contact</span>
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/products",
+        element: <Products />
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+    ]
   },
 ])
 
